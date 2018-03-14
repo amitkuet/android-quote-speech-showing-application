@@ -26,7 +26,7 @@ public class EditProfilePagesActivity extends BaseUIController implements View.O
         catName = getIntent().getStringExtra("CAT_NAME");
         if(catName !=null && !catName.isEmpty())this.selectFrag("CATEGORY",catName);
 
-        this.setLayoutType(AppEngine.getInstance().constants.TOPBAR_LAYOUT);
+        this.setLayoutType(AppEngine.getInstance().constants.DRAWER_LAYOUT);
         super.onCreate(savedInstanceState);
         this.addLayout(R.layout.edit_profile_view_pager);
         editProfileViewPagerAdapter = new EditProfileViewPagerAdapter(getSupportFragmentManager());

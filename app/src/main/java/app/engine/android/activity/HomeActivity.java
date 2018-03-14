@@ -21,12 +21,13 @@ public class HomeActivity extends BaseUIController implements MainCategoryInterf
         this.setLayoutType(AppEngine.getInstance().constants.DRAWER_LAYOUT);
         super.onCreate(savedInstanceState);
         this.addLayout(R.layout.activity_edit_profile_menu);
+        this.init();
         mainPresenter = new MainPresenter(this, this);
         mainPresenter.getMainCategories();
-        this.init();
         if(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)!=""){
             getWindow().getDecorView().setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
         }
+        AppEngine.getInstance().sharedPrefUtils.putPref("FONT", String.valueOf(16), this);
     }
 
     private void init(){
@@ -36,6 +37,7 @@ public class HomeActivity extends BaseUIController implements MainCategoryInterf
 
     @Override
     public void generateEditProfileMenu(List<MainCategory> mainCategories){
+        System.out.println("Bou>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + mainCategories.size());
         ProfileMenuAdapter adapter = new ProfileMenuAdapter(this, mainCategories);
         menuList.setAdapter(adapter);
     }

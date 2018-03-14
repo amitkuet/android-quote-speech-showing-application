@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import app.engine.android.R;
 import app.engine.android.model.Category;
 import app.engine.android.model.Item;
 import app.engine.android.model.MainCategory;
+import app.engine.android.util.Constants;
 import app.engine.android.util.StaticConstants;
 
 public class ContentActivity extends BaseUIController implements View.OnClickListener{
@@ -31,10 +33,11 @@ public class ContentActivity extends BaseUIController implements View.OnClickLis
     private ImageView imageView;
     private ImageView shareIcon;
     private String imageUrl = "";
-
+    private Button btnMinus;
+    private Button btnPlus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.setLayoutType(AppEngine.getInstance().constants.TOPBAR_LAYOUT);
+        this.setLayoutType(AppEngine.getInstance().constants.DRAWER_LAYOUT);
         super.onCreate(savedInstanceState);
         this.addLayout(R.layout.activity_content);
         this.setNavBarTitle(getResources().getString(R.string.content_page_title));
@@ -43,6 +46,11 @@ public class ContentActivity extends BaseUIController implements View.OnClickLis
         this.itemName = findViewById(R.id.itemName);
         this.imageView = findViewById(R.id.imageView);
         this.shareIcon = findViewById(R.id.shareIcon);
+
+        this.btnMinus = findViewById(R.id.btnMinus);
+        this.btnPlus = findViewById(R.id.btnPlus);
+        this.btnPlus.setOnClickListener(this);
+        this.btnMinus.setOnClickListener(this);
 
 
         String item_name = getIntent().getStringExtra("ITEM_NAME");
@@ -64,6 +72,7 @@ public class ContentActivity extends BaseUIController implements View.OnClickLis
         }
 
         if(this.imageUrl!=null && !this.imageUrl.isEmpty()) {
+            System.out.println("Bou>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + this.imageUrl);
             Picasso.with(this).load(this.imageUrl).into(this.imageView);
         }
         else{
@@ -81,5 +90,20 @@ public class ContentActivity extends BaseUIController implements View.OnClickLis
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.equals(this.btnPlus)){
+            int size = Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("FONT", this)) + 4;
+            AppEngine.getInstance().sharedPrefUtils.putPref("FONT", String.valueOf(size), this);
+            this.itemContent.setTextSize(size);
+        }
+        if(view.equals(this.btnMinus)){
+            int size = Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("FONT", this)) - 4;
+            AppEngine.getInstance().sharedPrefUtils.putPref("FONT", String.valueOf(size), this);
+            this.itemContent.setTextSize(size);
+        }
+
     }
 }

@@ -46,4 +46,33 @@
     <string name="content_page_title">Content</string>
 
 
+    <!--Flight Booking-->
+    <string name="flight_booking_title_text">Flight Booking</string>
+    <string name="flight_booking_fab_button_indicator_text_rental_car">Rental Car</string>
+    <string name="flight_booking_fab_button_indicator_text_hotel">Hotel</string>
+    <string name="flight_booking_fab_button_indicator_text_book_flight">Book a flight</string>
+    <string name="flight_booking_tabItem_one_way">One Way</string>
+    <string name="flight_booking_tabItem_round_trip">Round Trip</string>
+    <string name="flight_booking_tabItem_many_city">Many City</string>
+    <string name="flight_booking_edittext_text_origin_airport">Origin Airport</string>
+    <string name="flight_booking_edittext_text_destination_airport">Destination Airport</string>
+    <string name="flight_booking_edittext_text_departure_date">Departure Date</string>
+    <string name="flight_booking_edittext_text_return_date">Return Date</string>
+    <string name="flight_booking_edittext_text_travellers">Travellers</string>
+    <string name="flight_booking_edittext_text_class">Class</string>
+    <string name="flight_booking_edittext_plus_minus_three_days">+/- 3 days</string>
+    <string name="flight_booking_edittext_search_flights">Search Flights</string>
+
+    <string name="flight_booking_fragment_airport_edittext_search_flights">Search Field…</string>
+
+    <string name="flight_booking_fragment_travellers_textview_adults">Adults</string>
+    <string name="flight_booking_fragment_travellers_textview_children">Children</string>
+    <string name="flight_booking_fragment_travellers_textview_infants">Infants</string>
+    <string name="flight_booking_fragment_travellers_minus_button_text">-</string>
+    <string name="flight_booking_fragment_travellers_plus_button_text">+</string>
+    <string name="flight_booking_fragment_travellers_counter_textview_text">0</string>
+    <string name="flight_booking_fragment_travellers_submit_button_text">Submit</string>
+    <!--Flight Booking end-->
+
+
 </resources>
