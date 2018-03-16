@@ -56,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_shape_button"
                 android:text="@string/flight_booking_fragment_travellers_minus_button_text"
-                android:textSize="@dimen/common_text_size_30sp" />
+                android:textSize="@dimen/common_text_size_30sp"
+                android:layout_marginRight="@dimen/common_30dp"/>
 
             <Button
                 android:id="@+id/btnPlus"

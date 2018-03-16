@@ -17,7 +17,7 @@
             android:layout_marginBottom="@dimen/common_20dp">
 
             <TextView
-                android:id="@+id/itemName"
+                android:id="@+id/aboutText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/edit_profile_personalData_marginLeft"

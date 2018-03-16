@@ -1,5 +1,6 @@
 package app.engine.android.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ListView;
@@ -24,9 +25,6 @@ public class HomeActivity extends BaseUIController implements MainCategoryInterf
         this.init();
         mainPresenter = new MainPresenter(this, this);
         mainPresenter.getMainCategories();
-        if(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)!=""){
-            getWindow().getDecorView().setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
-        }
         AppEngine.getInstance().sharedPrefUtils.putPref("FONT", String.valueOf(16), this);
     }
 
@@ -37,8 +35,15 @@ public class HomeActivity extends BaseUIController implements MainCategoryInterf
 
     @Override
     public void generateEditProfileMenu(List<MainCategory> mainCategories){
-        System.out.println("Bou>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + mainCategories.size());
         ProfileMenuAdapter adapter = new ProfileMenuAdapter(this, mainCategories);
         menuList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

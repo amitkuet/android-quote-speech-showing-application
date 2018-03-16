@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import java.util.List;
 
+import app.engine.android.AppEngine;
 import app.engine.android.R;
 import app.engine.android.model.MainCategory;
 import app.engine.android.util.StaticConstants;
@@ -59,6 +60,7 @@ class ProfileMenuAdapter extends BaseAdapter {
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
         holder.button.setText(values.get(position).getName());
+        holder.button.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", context)));
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -52,6 +53,13 @@ public class ContentActivity extends BaseUIController implements View.OnClickLis
         this.btnPlus.setOnClickListener(this);
         this.btnMinus.setOnClickListener(this);
 
+        this.btnMinus.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+        this.btnPlus.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+        this.itemContent.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+        System.out.println("Misty>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this));
+        if(AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this) != ""){
+            this.itemContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this)));
+        }
 
         String item_name = getIntent().getStringExtra("ITEM_NAME");
         List<MainCategory> mainCategories = AppEngine.getInstance().mainCategoryList.getMainCategories();
@@ -72,7 +80,6 @@ public class ContentActivity extends BaseUIController implements View.OnClickLis
         }
 
         if(this.imageUrl!=null && !this.imageUrl.isEmpty()) {
-            System.out.println("Bou>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + this.imageUrl);
             Picasso.with(this).load(this.imageUrl).into(this.imageView);
         }
         else{
@@ -95,13 +102,23 @@ public class ContentActivity extends BaseUIController implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if(view.equals(this.btnPlus)){
-            int size = Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("FONT", this)) + 4;
-            AppEngine.getInstance().sharedPrefUtils.putPref("FONT", String.valueOf(size), this);
+            int size = 0;
+            if(AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this) != ""){
+                size =  Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this)) + 4;
+            }else{
+                size = 16;
+            }
+            AppEngine.getInstance().sharedPrefUtils.putPref("FONT_SIZE", String.valueOf(size), this);
             this.itemContent.setTextSize(size);
         }
         if(view.equals(this.btnMinus)){
-            int size = Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("FONT", this)) - 4;
-            AppEngine.getInstance().sharedPrefUtils.putPref("FONT", String.valueOf(size), this);
+            int size = 0;
+            if(AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this) != ""){
+                size =  Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this)) - 4;
+            }else{
+                size = 16;
+            }
+            AppEngine.getInstance().sharedPrefUtils.putPref("FONT_SIZE", String.valueOf(size), this);
             this.itemContent.setTextSize(size);
         }
 
