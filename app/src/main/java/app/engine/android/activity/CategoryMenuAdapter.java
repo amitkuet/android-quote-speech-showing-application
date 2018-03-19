@@ -59,7 +59,9 @@ class CategoryMenuAdapter extends BaseAdapter {
 
         CategoryViewHolder holder = (CategoryViewHolder) rowView.getTag();
         holder.button.setText(values.get(position).getName());
-        holder.button.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", context)));
+        if(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", context) != "") {
+            holder.button.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", context)));
+        }
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

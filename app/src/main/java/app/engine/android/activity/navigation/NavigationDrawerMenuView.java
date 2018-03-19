@@ -24,7 +24,9 @@ public class NavigationDrawerMenuView {
             MenuItemViewHolder viewHolder = new MenuItemViewHolder();
 
             viewHolder.button = view.findViewById(R.id.navMenuButton);
-            viewHolder.button.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", context)));
+            if(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", context) != "") {
+                viewHolder.button.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", context)));
+            }
             viewHolder.navButtonIcon = view.findViewById(R.id.navButtonIcon);
             view.setTag(viewHolder);
 

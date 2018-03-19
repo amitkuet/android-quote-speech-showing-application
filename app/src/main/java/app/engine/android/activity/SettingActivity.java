@@ -26,12 +26,14 @@ public class SettingActivity extends BaseUIController implements View.OnClickLis
         this.addLayout(R.layout.activity_setting);
         this.setNavBarTitle("Setting");
         this.toggleButton1 = findViewById(R.id.toggleButton1);
-        this.toggleButton1.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
 
         final ColorPicker cp = new ColorPicker(this, 1, 1, 1);
-
         this.colorPicker = findViewById(R.id.colorPicker);
-        this.colorPicker.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+
+        if(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this) != ""){
+            this.toggleButton1.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+            this.colorPicker.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+        }
 
         this.colorPicker.setOnClickListener(new View.OnClickListener() {
             @Override

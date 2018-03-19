@@ -52,11 +52,12 @@ public class ContentActivity extends BaseUIController implements View.OnClickLis
         this.btnPlus = findViewById(R.id.btnPlus);
         this.btnPlus.setOnClickListener(this);
         this.btnMinus.setOnClickListener(this);
+        if(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this) != "") {
+            this.btnMinus.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+            this.btnPlus.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+            this.itemContent.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+        }
 
-        this.btnMinus.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
-        this.btnPlus.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
-        this.itemContent.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
-        System.out.println("Misty>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this));
         if(AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this) != ""){
             this.itemContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("FONT_SIZE", this)));
         }

@@ -20,7 +20,8 @@ public class AboutActivity extends BaseUIController {
         this.setNavBarTitle("About");
 
         this.aboutText =findViewById(R.id.aboutText);
-        this.aboutText.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
-
+        if(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this) != "") {
+            this.aboutText.setBackgroundColor(Integer.parseInt(AppEngine.getInstance().sharedPrefUtils.getPref("THEME_COLOR", this)));
+        }
     }
 }
